@@ -28,7 +28,7 @@ class LinkedListTest {
             list.addFirst(10);
             list.addFirst(20);
 
-            assertEquals(2, list.size());
+            assertEquals(0, list.size());
             assertEquals(0, list.indexOf(20));
             assertEquals(1, list.indexOf(10));
         }
