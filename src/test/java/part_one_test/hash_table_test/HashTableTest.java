@@ -32,12 +32,12 @@ public class HashTableTest {
 
         @Test
         void putItemsMoreThanTheArraySize() {
-            var key = new Random().nextInt(10000);
+            var key = new Random().nextInt(999999999);
             var value = RandomStringUtils.randomAlphabetic(10);
             map.put(key, value);
 
             for (int i = 0; i < 999; i++) {
-                var r = map.put(new Random().nextInt(99999),
+                var r = map.put(new Random().nextInt(999999999),
                         RandomStringUtils.randomAlphabetic(10));
                 assertTrue(r);
             }

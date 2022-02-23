@@ -28,9 +28,8 @@ public class StackEx {
             var chS = String.valueOf(ch);
             if (chS.matches("[(<\\[]"))
                 stack.push(ch);
-            if (stack.empty()) return false;
             if (chS.matches("[)>\\]]")) {
-                if (!stack.pop().equals(getEquivalentBracket(ch))) return false;
+                if (stack.isEmpty() || !stack.pop().equals(getEquivalentBracket(ch))) return false;
             }
         }
         return stack.empty();
