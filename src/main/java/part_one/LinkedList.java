@@ -25,6 +25,7 @@ public class LinkedList<T> {
 
     private final BooleanSupplier isEmpty = () -> first == null;
     private final Predicate<Integer> isValidIndex = (index) -> index < length && index >= 0;
+    private final Predicate<Integer> isValidKth = (kth) -> kth <= length && kth > 0;
 
     public void addFirst(T value) {
         if (isEmpty.getAsBoolean()) {
@@ -116,20 +117,23 @@ public class LinkedList<T> {
         return node.value;
     }
 
-    public T getKthFromTheEnd(int k) {
+    public T getKthFromTheEnd2(int k) {
         return get(length - k);
     }
 
-//    public T getKthFromTheEnd2(int k) {
-//        // dif k - 1
-//        var node1 = first;
-//        Node<T> node2 = first;
-//
-//        for (int i = 0; i < length; i++) {
-//            node1 =
-//            if (i >= k) node2 = node2.next;
-//        }
-//    }
+    public T getKthFromTheEnd(int k) {
+        // dif k - 1
+        if (!isValidKth.test(k)) return null;
+
+        var node1 = first;
+        Node<T> node2 = null;
+
+        for (int i = 0; i < length; i++) {
+            node1 = node1.next;
+            if (i >= k - 1) node2 = node2 == null ? first : node2.next;
+        }
+        return node2 == null ? null : node2.value;
+    }
 
     public T toArray() {
         var array = new Object[length];
